@@ -8,14 +8,24 @@
 // @ is an alias to /src
 import CardList from '@/components/CardList.vue'
 import { products } from '@/utils/api'
-import { getData } from '@/utils/fetchData'
+//import { getData } from '@/utils/fetchData'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'home',
   components: {
     CardList
   },
-  data() {
+   computed:{
+      ...mapState(['productos'])
+    },
+    methods:{
+      ...mapActions(['getData'])
+    },
+    mounted: function () {
+      this.getData(products)
+    } 
+  /* data() {
     return {
       productos: []
     }
@@ -30,7 +40,6 @@ export default {
   mounted: function(){
     this.getListProducts();
     
-  }
-
+  } */
 }
 </script>

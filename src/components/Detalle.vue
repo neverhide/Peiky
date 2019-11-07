@@ -12,8 +12,9 @@
     </section>
 </template>
 <script>
-import { getData } from '@/utils/fetchData'
+//import { getData } from '@/utils/fetchData'
 import CarouselImg from '@/components/CarouselImg'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     name: 'Detalle',
@@ -21,6 +22,16 @@ export default {
     components: {
         CarouselImg
     },
+    computed:{
+      ...mapState(['producto'])
+    },
+    methods:{
+      ...mapActions(['getData'])
+    },
+    mounted: function () {
+      this.getData(`movie/${this.$route.params.id}`)
+    } 
+    /* ,
     data() {
         return {
         producto: {}
@@ -37,6 +48,6 @@ export default {
     mounted: function(){
         this.getProduct();
         
-    }
+    } */
 }
 </script>
